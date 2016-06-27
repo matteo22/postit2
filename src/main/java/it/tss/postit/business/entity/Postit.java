@@ -7,11 +7,16 @@ package it.tss.postit.business.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,7 +41,12 @@ public class Postit implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataScadenza;
     
+    @ManyToOne
+    private Utente utente;
     
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "postit_tags")
+    private Set<String> tags;
 
     
     
@@ -71,6 +81,23 @@ public class Postit implements Serializable {
     public void setDataScadenza(Date dataScadenza) {
         this.dataScadenza = dataScadenza;
     }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
+    }
+    
     
     
 
