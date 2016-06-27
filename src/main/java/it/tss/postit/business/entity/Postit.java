@@ -36,6 +36,7 @@ public class Postit implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataScadenza;
     
+    
 
     
     
